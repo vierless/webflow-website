@@ -541,3 +541,4 @@ document.addEventListener('DOMContentLoaded', function () {
     input.addEventListener('change', reset);
     input.addEventListener('keyup', reset);
 });
+console.log('request-form.js');
