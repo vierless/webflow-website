@@ -34,330 +34,8 @@ if (Array.isArray(localStorageData)) {
         }
     });
 }
-// international phone input
-    let input = document.querySelector('#phone'),
-        dialCode = document.querySelector('.dialCode'),
-        errorMsg = document.querySelector('#error-msg'),
-        validMsg = document.querySelector('#valid-msg');
 
-    const iti = window.intlTelInput(input, {
-        allowDropdown: true,
-        autoInsertDialCode: false,
-        containerClass: 'phone-input-container',
-        countrySearch: true,
-        fixDropdownWidth: false,
-        geoIpLookup: function (callback) {
-            fetch('https://ipapi.co/json')
-                .then(function (res) {
-                    return res.json();
-                })
-                .then(function (data) {
-                    callback(data.country_code);
-                })
-                .catch(function () {
-                    callback();
-                });
-        },
-        hiddenInput: () => 'phone_full',
-        i18n: {
-            'af': 'Afghanistan',
-            'ax': 'Ålandinseln',
-            'al': 'Albanien',
-            'dz': 'Algerien',
-            'as': 'Amerikanisch-Samoa',
-            'ad': 'Andorra',
-            'ao': 'Angola',
-            'ai': 'Anguilla',
-            'aq': 'Antarktika',
-            'ag': 'Antigua und Barbuda',
-            'ar': 'Argentinien',
-            'am': 'Armenien',
-            'aw': 'Aruba',
-            'au': 'Australien',
-            'at': 'Österreich',
-            'az': 'Aserbaidschan',
-            'bs': 'Bahamas',
-            'bh': 'Bahrain',
-            'bd': 'Bangladesch',
-            'bb': 'Barbados',
-            'by': 'Weißrussland',
-            'be': 'Belgien',
-            'bz': 'Belize',
-            'bj': 'Benin',
-            'bm': 'Bermuda',
-            'bt': 'Bhutan',
-            'bo': 'Bolivien',
-            'ba': 'Bosnien und Herzegowina',
-            'bw': 'Botswana',
-            'bv': 'Bouvetinsel',
-            'br': 'Brasilien',
-            'io': 'Britisches Territorium im Indischen Ozean',
-            'vg': 'Britische Jungferninseln',
-            'bn': 'Brunei Darussalam',
-            'bg': 'Bulgarien',
-            'bf': 'Burkina Faso',
-            'bi': 'Burundi',
-            'kh': 'Kambodscha',
-            'cm': 'Kamerun',
-            'ca': 'Kanada',
-            'cv': 'Kap Verde',
-            'ky': 'Kaimaninseln',
-            'cf': 'Zentralafrikanische Republik',
-            'td': 'Tschad',
-            'cl': 'Chile',
-            'cn': 'China',
-            'cx': 'Weihnachtsinsel',
-            'cc': 'Kokosinseln',
-            'co': 'Kolumbien',
-            'km': 'Komoren',
-            'cg': 'Kongo',
-            'cd': 'Demokratische Republik Kongo',
-            'ck': 'Cookinseln',
-            'cr': 'Costa Rica',
-            'hr': 'Kroatien',
-            'cu': 'Kuba',
-            'cw': 'Curaçao',
-            'cy': 'Zypern',
-            'cz': 'Tschechische Republik',
-            'dk': 'Dänemark',
-            'dj': 'Dschibuti',
-            'dm': 'Dominica',
-            'do': 'Dominikanische Republik',
-            'ec': 'Ecuador',
-            'eg': 'Ägypten',
-            'sv': 'El Salvador',
-            'gq': 'Äquatorialguinea',
-            'er': 'Eritrea',
-            'ee': 'Estland',
-            'et': 'Äthiopien',
-            'fk': 'Falklandinseln',
-            'fo': 'Färöer-Inseln',
-            'fj': 'Fidschi',
-            'fi': 'Finnland',
-            'fr': 'Frankreich',
-            'gf': 'Französisch-Guayana',
-            'pf': 'Französisch-Polynesien',
-            'tf': 'Französische Südgebiete',
-            'ga': 'Gabun',
-            'gm': 'Gambia',
-            'ge': 'Georgien',
-            'de': 'Deutschland',
-            'gh': 'Ghana',
-            'gi': 'Gibraltar',
-            'gr': 'Griechenland',
-            'gl': 'Grönland',
-            'gd': 'Grenada',
-            'gp': 'Guadeloupe',
-            'gu': 'Guam',
-            'gt': 'Guatemala',
-            'gg': 'Guernsey',
-            'gn': 'Guinea',
-            'gw': 'Guinea-Bissau',
-            'gy': 'Guyana',
-            'ht': 'Haiti',
-            'hm': 'Heard und McDonaldinseln',
-            'va': 'Heiliger Stuhl (Vatikanstadt)',
-            'hn': 'Honduras',
-            'hk': 'Hongkong',
-            'hu': 'Ungarn',
-            'is': 'Island',
-            'in': 'Indien',
-            'id': 'Indonesien',
-            'ir': 'Iran',
-            'iq': 'Irak',
-            'ie': 'Irland',
-            'im': 'Isle of Man',
-            'il': 'Israel',
-            'it': 'Italien',
-            'ci': 'Elfenbeinküste',
-            'jm': 'Jamaika',
-            'jp': 'Japan',
-            'je': 'Jersey',
-            'jo': 'Jordanien',
-            'kz': 'Kasachstan',
-            'ke': 'Kenia',
-            'ki': 'Kiribati',
-            'kw': 'Kuwait',
-            'kg': 'Kirgisistan',
-            'la': 'Laos',
-            'lv': 'Lettland',
-            'lb': 'Libanon',
-            'ls': 'Lesotho',
-            'lr': 'Liberia',
-            'ly': 'Libyen',
-            'li': 'Liechtenstein',
-            'lt': 'Litauen',
-            'lu': 'Luxemburg',
-            'mo': 'Macao',
-            'mk': 'Nordmazedonien',
-            'mg': 'Madagaskar',
-            'mw': 'Malawi',
-            'my': 'Malaysia',
-            'mv': 'Malediven',
-            'ml': 'Mali',
-            'mt': 'Malta',
-            'mh': 'Marshallinseln',
-            'mq': 'Martinique',
-            'mr': 'Mauretanien',
-            'mu': 'Mauritius',
-            'yt': 'Mayotte',
-            'mx': 'Mexiko',
-            'fm': 'Mikronesien',
-            'md': 'Republik Moldau',
-            'mc': 'Monaco',
-            'mn': 'Mongolei',
-            'me': 'Montenegro',
-            'ms': 'Montserrat',
-            'ma': 'Marokko',
-            'mz': 'Mosambik',
-            'mm': 'Myanmar',
-            'na': 'Namibia',
-            'nr': 'Nauru',
-            'np': 'Nepal',
-            'nl': 'Niederlande',
-            'nc': 'Neukaledonien',
-            'nz': 'Neuseeland',
-            'ni': 'Nicaragua',
-            'ne': 'Niger',
-            'ng': 'Nigeria',
-            'nu': 'Niue',
-            'nf': 'Norfolkinsel',
-            'mp': 'Nördliche Marianen',
-            'kp': 'Nordkorea',
-            'no': 'Norwegen',
-            'om': 'Oman',
-            'pk': 'Pakistan',
-            'pw': 'Palau',
-            'ps': 'Palästinensische Autonomiegebiete',
-            'pa': 'Panama',
-            'pg': 'Papua-Neuguinea',
-            'py': 'Paraguay',
-            'pe': 'Peru',
-            'ph': 'Philippinen',
-            'pn': 'Pitcairn',
-            'pl': 'Polen',
-            'pt': 'Portugal',
-            'pr': 'Puerto Rico',
-            'qa': 'Katar',
-            're': 'Réunion',
-            'ro': 'Rumänien',
-            'ru': 'Russland',
-            'rw': 'Ruanda',
-            'bl': 'St. Barthélemy',
-            'sh': 'St. Helena',
-            'kn': 'St. Kitts und Nevis',
-            'lc': 'St. Lucia',
-            'mf': 'St. Martin',
-            'pm': 'St. Pierre und Miquelon',
-            'vc': 'St. Vincent und die Grenadinen',
-            'ws': 'Samoa',
-            'sm': 'San Marino',
-            'st': 'São Tomé und Príncipe',
-            'sa': 'Saudi-Arabien',
-            'sn': 'Senegal',
-            'rs': 'Serbien',
-            'sc': 'Seychellen',
-            'sl': 'Sierra Leone',
-            'sg': 'Singapur',
-            'sx': 'Sint Maarten',
-            'sk': 'Slowakei',
-            'si': 'Slowenien',
-            'sb': 'Salomonen',
-            'so': 'Somalia',
-            'za': 'Südafrika',
-            'gs': 'Südgeorgien und die Südlichen Sandwichinseln',
-            'kr': 'Südkorea',
-            'ss': 'Südsudan',
-            'es': 'Spanien',
-            'lk': 'Sri Lanka',
-            'sd': 'Sudan',
-            'sr': 'Suriname',
-            'sj': 'Svalbard und Jan Mayen',
-            'sz': 'Eswatini',
-            'se': 'Schweden',
-            'ch': 'Schweiz',
-            'sy': 'Syrien',
-            'tw': 'Taiwan',
-            'tj': 'Tadschikistan',
-            'tz': 'Tansania',
-            'th': 'Thailand',
-            'tl': 'Osttimor',
-            'tg': 'Togo',
-            'tk': 'Tokelau',
-            'to': 'Tonga',
-            'tt': 'Trinidad und Tobago',
-            'tn': 'Tunesien',
-            'tr': 'Türkei',
-            'tm': 'Turkmenistan',
-            'tc': 'Turks- und Caicosinseln',
-            'tv': 'Tuvalu',
-            'ug': 'Uganda',
-            'ua': 'Ukraine',
-            'ae': 'Vereinigte Arabische Emirate',
-            'gb': 'Vereinigtes Königreich',
-            'us': 'Vereinigte Staaten von Amerika',
-            'um': 'Amerikanisch-Ozeanien',
-            'uy': 'Uruguay',
-            'uz': 'Usbekistan',
-            'vu': 'Vanuatu',
-            've': 'Venezuela',
-            'vn': 'Vietnam',
-            'wf': 'Wallis und Futuna',
-            'eh': 'Westsahara',
-            'ye': 'Jemen',
-            'zm': 'Sambia',
-            'zw': 'Simbabwe'
-        },
-        // initialCountry: "de",
-        initialCountry: 'auto',
-        geoIpLookup: callback => {
-            fetch('https://ipapi.co/json')
-                .then(res => res.json())
-                .then(data => callback(data.country_code))
-                .catch(() => callback('de'));
-        },
-        nationalMode: true,
-        // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
-        placeholderNumberType: 'MOBILE',
-        // preferredCountries: ['de', 'gb', 'ch'],
-        showFlags: true,
-        showSelectedDialCode: true,
-        useFullscreenPopup: false,
-        utilsScript: 'build/js/utils.js'
-    });
-
-
-    // Webflow Code start
-    var updateInputValue = function (event) {
-        dialCode.value = "+" + iti.getSelectedCountryData().dialCode;
-    };
-    input.addEventListener('input', updateInputValue, false);
-    input.addEventListener('countrychange', updateInputValue, false);
-
-    const errorMap = ["Ungültige Nummer", "Ungültige Ländervorwahl", "Telefonnummer ist zu kurz", "Telefonnummer ist zu lang", "Ungültige Nummer"];
-    const reset = () => {
-        input.classList.remove("error");
-        errorMsg.innerHTML = "";
-        errorMsg.classList.add("hide");
-        validMsg.classList.add("hide");
-    };
-    input.addEventListener('blur', function () {
-        reset();
-        if (input.value.trim()) {
-            if (iti.isValidNumber()) {
-                validMsg.classList.remove('hide');
-            } else {
-                input.classList.add('error');
-                var errorCode = iti.getValidationError();
-                errorMsg.innerHTML = errorMap[errorCode];
-                errorMsg.classList.remove('hide');
-            }
-        }
-    });
-
-    input.addEventListener('change', reset);
-    input.addEventListener('keyup', reset);
-
+// on page load
 document.addEventListener('DOMContentLoaded', function () {
     // custom disabled states
     const nextBtns = document.querySelectorAll("[data-form='next-btn']");
@@ -539,5 +217,48 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // Intl-tel-input
+    var intlInput = form.querySelector('input[data-intl-phone="true"]'),
+    	dialCode = form.querySelector('.dialCode'),
+     	errorMsg = form.querySelector('#error-msg'),
+        validMsg = form.querySelector('#valid-msg');
+    
+    var iti = intlTelInput(intlInput, {
+        initialCountry: "de",
+        placeholderNumberType: 'FIXED_LINE',
+    });
+    
+    var updateInputValue = function (event) {
+        dialCode.value = "+" + iti.getSelectedCountryData().dialCode;
+    };
+    intlInput.addEventListener('input', updateInputValue, false);
+    intlInput.addEventListener('countrychange', updateInputValue, false);
+    
+    var errorMap = ['Invalid number', 'Invalid country code', 'Too short', 'Too long', 'Invalid number'];
+    
+    var reset = function() {
+        intlInput.classList.remove('error');
+        errorMsg.innerHTML = '';
+        errorMsg.classList.add('hide');
+        validMsg.classList.add('hide');
+    };
+    
+    intlInput.addEventListener('blur', function() {
+    reset();
+    if (intlInput.value.trim()) {
+        if (iti.isValidNumber()) {
+            validMsg.classList.remove('hide');
+        } else {
+            intlInput.classList.add('error');
+            var errorCode = iti.getValidationError();
+            errorMsg.innerHTML = errorMap[errorCode];
+            errorMsg.classList.remove('hide');
+        }
+    }
+    });
+    
+    intlInput.addEventListener('change', reset);
+    intlInput.addEventListener('keyup', reset);
 });
 console.log('request-form.js');
