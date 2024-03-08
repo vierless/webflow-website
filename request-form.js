@@ -227,6 +227,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var iti = window.intlTelInput(intlInput, {
         initialCountry: "de",
         placeholderNumberType: 'FIXED_LINE',
+        utilsScript: "https://cdn.jsdelivr.net/gh/jackocnr/intl-tel-input/build/js/utils.js"
     });
     
     var updateInputValue = function (event) {
