@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function () {
      	errorMsg = form.querySelector('#error-msg'),
         validMsg = form.querySelector('#valid-msg');
     
-    var iti = intlTelInput(intlInput, {
+    var iti = window.intlTelInput(intlInput, {
         initialCountry: "de",
         placeholderNumberType: 'FIXED_LINE',
     });
